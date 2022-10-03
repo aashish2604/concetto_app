@@ -4,9 +4,11 @@ import 'package:concetto_app/widgets/slashbox.dart';
 import 'package:concetto_app/widgets/video_player_container.dart';
 import 'package:concetto_app/widgets/youtube_player.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:async';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -53,6 +55,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
     double screenHeight = SizeConfig.instance.screenHeight;
     double screenWidth = SizeConfig.instance.screenWidth;
+
+    final Row followUsLabel = Row(children: <Widget>[
+      Expanded(
+        child: Container(
+            margin: const EdgeInsets.only(left: 10.0, right: 15.0),
+            child: const Divider(
+              color: Colors.white70,
+              height: 50,
+            )),
+      ),
+      const Text(
+        "Follow us on",
+        style: TextStyle(color: Colors.white70),
+      ),
+      Expanded(
+        child: Container(
+            margin: const EdgeInsets.only(left: 15.0, right: 10.0),
+            child: const Divider(
+              color: Colors.white70,
+              height: 50,
+            )),
+      ),
+    ]);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -60,11 +86,22 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.06),
               child: Text('Concetto',
-                  style: GoogleFonts.sansita(
+                  style: GoogleFonts.orbitron(
                       fontSize: 46.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: Divider(
+                color: Colors.white54,
+              ),
+            ),
+            Text('REALITY BEYOND VISION',
+                style: GoogleFonts.orbitron(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white70)),
             const SizedBox(
               height: 40.0,
             ),
@@ -91,8 +128,56 @@ class _HomeScreenState extends State<HomeScreen> {
               '$days:$hours:$minutes:$seconds',
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
-                  color: Colors.cyan,
+                  color: kBrightCyan,
                   fontSize: 40),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+            followUsLabel,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Uri uri = Uri.parse(
+                          "https://www.facebook.com/Concettoiitdhanbad/");
+                      launchUrl(uri);
+                    },
+                    icon: const FaIcon(
+                      size: 40,
+                      FontAwesomeIcons.facebook,
+                      color: Colors.blue,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      Uri uri = Uri.parse(
+                          "https://www.instagram.com/concetto.iitism/?hl=en");
+                      launchUrl(uri);
+                    },
+                    icon: const FaIcon(
+                      size: 40,
+                      FontAwesomeIcons.instagram,
+                      color: Colors.purple,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: const FaIcon(
+                      size: 40,
+                      FontAwesomeIcons.linkedin,
+                      color: Colors.blue,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: const FaIcon(
+                      size: 40,
+                      FontAwesomeIcons.globe,
+                      color: Colors.blue,
+                    )),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
