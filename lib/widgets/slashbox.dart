@@ -7,8 +7,13 @@ class BorderedSlashBox extends StatelessWidget {
   final Widget? child;
   final double height;
   final double width;
+  final EdgeInsets? padding;
   const BorderedSlashBox(
-      {super.key, required this.height, required this.width, this.child});
+      {super.key,
+      required this.height,
+      required this.width,
+      this.padding,
+      this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +27,9 @@ class BorderedSlashBox extends StatelessWidget {
           width: width - 4,
           color: kCoolGrey,
           child: Padding(
-            padding: EdgeInsets.only(
-                top: (height * 0.15 + 2), left: (width * 0.1 + 2)),
+            padding: padding ??
+                EdgeInsets.only(
+                    top: (height * 0.15 + 2), left: (width * 0.1 + 2)),
             child: child,
           ),
         ),
