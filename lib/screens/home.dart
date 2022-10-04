@@ -1,5 +1,6 @@
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
+import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/widgets/slashbox.dart';
 import 'package:concetto_app/widgets/video_player_container.dart';
 import 'package:concetto_app/widgets/youtube_player.dart';
@@ -102,17 +103,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.w300,
                     color: Colors.white70)),
-            const SizedBox(
-              height: 40.0,
-            ),
-            YoutubePlayerContainer(
-              backgroundColor: kCoolGrey,
-              width: screenWidth * 0.85,
-              height: screenHeight * 0.35,
-            ),
-            const SizedBox(
-              height: 40.0,
-            ),
+            // const SizedBox(
+            //   height: 40.0,
+            // ),
+            SizedBox(
+                height: 400,
+                width: screenWidth,
+                child: MyRiveAnimation(height: 400, width: screenWidth)),
             const Center(
               child: Text(
                 'Coming Soon...',
@@ -130,6 +127,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w400,
                   color: kBrightCyan,
                   fontSize: 40),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+            YoutubePlayerContainer(
+              backgroundColor: kCoolGrey,
+              width: screenWidth * 0.85,
+              height: screenHeight * 0.35,
             ),
             const SizedBox(
               height: 60,
@@ -177,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
           ],
         ),

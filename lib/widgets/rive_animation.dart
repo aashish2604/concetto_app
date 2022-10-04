@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
 class MyRiveAnimation extends StatefulWidget {
-  const MyRiveAnimation({super.key});
+  final double height;
+  final double width;
+  const MyRiveAnimation({required this.height, required this.width, super.key});
 
   @override
   State<MyRiveAnimation> createState() => _MyRiveAnimationState();
@@ -48,8 +50,8 @@ class _MyRiveAnimationState extends State<MyRiveAnimation> {
                   hitClick();
                 },
                 child: SizedBox(
-                    height: 400,
-                    width: 400,
+                    height: widget.height,
+                    width: widget.width,
                     child: Rive(
                       artboard: _riveArtboard!,
                       alignment: Alignment.center,
