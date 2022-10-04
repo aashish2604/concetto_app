@@ -1,4 +1,5 @@
 import 'package:concetto_app/screens/home.dart';
+import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/theme.dart';
 import 'package:flutter/material.dart';

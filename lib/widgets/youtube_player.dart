@@ -25,7 +25,10 @@ class _YoutubePlayerContainerState extends State<YoutubePlayerContainer> {
     playController = YoutubePlayerController(
         initialVideoId: 'ylirku6tBFc',
         flags: const YoutubePlayerFlags(
-            autoPlay: true, loop: true, showLiveFullscreenButton: false));
+            autoPlay: true,
+            loop: true,
+            showLiveFullscreenButton: false,
+            mute: true));
 
     setState(() {});
     super.initState();
