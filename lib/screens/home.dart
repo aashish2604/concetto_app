@@ -1,3 +1,4 @@
+import 'package:concetto_app/screens/about_us.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
@@ -138,6 +139,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(
               height: 60,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const AboutUs()));
+                  },
+                  child: const Text('About us')),
             ),
             followUsLabel,
             Row(
