@@ -29,7 +29,7 @@ class BorderedSlashBox extends StatelessWidget {
           child: Padding(
             padding: padding ??
                 EdgeInsets.only(
-                    top: (height * 0.15 + 2), left: (width * 0.1 + 2)),
+                    top: (height * 0.1 + 2), left: (width * 0.1 + 2)),
             child: child,
           ),
         ),

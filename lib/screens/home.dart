@@ -1,4 +1,6 @@
+import 'package:concetto_app/repository/events_repository.dart';
 import 'package:concetto_app/screens/about_us.dart';
+import 'package:concetto_app/screens/events.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
@@ -111,6 +113,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 400,
                 width: screenWidth,
                 child: MyRiveAnimation(height: 400, width: screenWidth)),
+            GestureDetector(
+              onTap: () {
+                EventsRepository().getEvents();
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const Events()));
+              },
+              child: BorderedSlashBox(
+                padding: EdgeInsets.zero,
+                height: 150,
+                width: screenWidth * 0.85,
+                child: const Center(
+                  child: Text(
+                    'Events',
+                    style: TextStyle(
+                        color: kBrightCyan,
+                        fontFamily: "orbitron",
+                        fontSize: 22.0),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
             const Center(
               child: Text(
                 'Coming Soon...',
@@ -149,6 +175,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: const Text('About us')),
             ),
+            const SizedBox(
+              height: 20.0,
+            ),
             followUsLabel,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -183,7 +212,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.blue,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Uri uri = Uri.parse("https://concetto.in/");
+                      launchUrl(uri);
+                    },
                     icon: const FaIcon(
                       size: 40,
                       FontAwesomeIcons.globe,

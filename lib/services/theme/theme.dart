@@ -5,11 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   ThemeData themeData() {
-    BuildContext? context = navigatorKey.currentContext;
+    // BuildContext? context = navigatorKey.currentContext;
     return ThemeData(
       textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-              minimumSize: Size(MediaQuery.of(context!).size.width, 40),
+              minimumSize: const Size(double.infinity, 40),
               backgroundColor: kBrightCyan,
               foregroundColor: Colors.black,
               shape: const RoundedRectangleBorder(
