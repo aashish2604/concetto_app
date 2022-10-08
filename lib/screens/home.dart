@@ -1,6 +1,6 @@
 import 'package:concetto_app/repository/events_repository.dart';
 import 'package:concetto_app/screens/about_us.dart';
-import 'package:concetto_app/screens/events.dart';
+import 'package:concetto_app/screens/events/events.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
