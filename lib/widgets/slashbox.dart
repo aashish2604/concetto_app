@@ -8,10 +8,12 @@ class BorderedSlashBox extends StatelessWidget {
   final double height;
   final double width;
   final EdgeInsets? padding;
+  final String? backgroundImage;
   const BorderedSlashBox(
       {super.key,
       required this.height,
       required this.width,
+      this.backgroundImage,
       this.padding,
       this.child});
 
@@ -26,6 +28,7 @@ class BorderedSlashBox extends StatelessWidget {
           height: height - 4,
           width: width - 4,
           color: kCoolGrey,
+          backgroundImage: backgroundImage,
           child: Padding(
             padding: padding ??
                 EdgeInsets.only(
@@ -43,10 +46,12 @@ class SlashBox extends StatelessWidget {
   final double width;
   final Widget? child;
   final Color color;
+  final String? backgroundImage;
   const SlashBox(
       {required this.height,
       required this.width,
       required this.color,
+      this.backgroundImage,
       this.child,
       super.key});
 
@@ -58,9 +63,13 @@ class SlashBox extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: color,
-          // border: Border.all(color: kBrightCyan, width: 2),
-        ),
+            color: color,
+            image: backgroundImage != null
+                ? DecorationImage(
+                    image: AssetImage(backgroundImage!), fit: BoxFit.fill)
+                : null
+            // border: Border.all(color: kBrightCyan, width: 2),
+            ),
         child: child,
       ),
     );
