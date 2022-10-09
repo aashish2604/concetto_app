@@ -43,13 +43,15 @@ class _MyRiveAnimationState extends State<MyRiveAnimation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Center(
         child: _riveArtboard != null
             ? GestureDetector(
                 onTap: () {
                   hitClick();
                 },
-                child: SizedBox(
+                child: Container(
+                    decoration: BoxDecoration(color: Colors.transparent),
                     height: widget.height,
                     width: widget.width,
                     child: Rive(
