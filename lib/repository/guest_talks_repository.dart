@@ -7,13 +7,13 @@ class GuestTalksRepository {
     try {
       final apiResponse = await Dio().get(kGuestTalksEndpoint);
       List responseData = apiResponse.data;
-      List<GuestTalksModel> eventList = [];
+      List<GuestTalksModel> guestTalkList = [];
       for (var data in responseData) {
         final json = data as Map<String, dynamic>;
-        final GuestTalksModel eventModel = GuestTalksModel.fromJson(json);
-        eventList.add(eventModel);
+        final GuestTalksModel guestTalkModel = GuestTalksModel.fromJson(json);
+        guestTalkList.add(guestTalkModel);
       }
-      return eventList;
+      return guestTalkList;
     } catch (e) {
       return null;
     }
