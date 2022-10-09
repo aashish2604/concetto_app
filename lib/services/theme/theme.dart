@@ -26,7 +26,7 @@ class AppTheme {
           backgroundColor: Colors.transparent,
           titleTextStyle: TextStyle(color: Colors.white),
           elevation: 0),
-      scaffoldBackgroundColor: kSmoothBlack,
+      scaffoldBackgroundColor: Colors.transparent,
     );
   }
 }

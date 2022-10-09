@@ -1,4 +1,9 @@
+import 'dart:ui';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:concetto_app/repository/events_repository.dart';
+import 'package:concetto_app/repository/guest_talks_repository.dart';
+import 'package:concetto_app/repository/sponsors_repository.dart';
 import 'package:concetto_app/screens/about_us.dart';
 import 'package:concetto_app/screens/events/events.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
@@ -83,150 +88,175 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     ]);
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.06),
-              child: Text('Concetto',
-                  style: GoogleFonts.orbitron(
-                      fontSize: 46.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white)),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Divider(
-                color: Colors.white54,
-              ),
-            ),
-            Text('REALITY BEYOND VISION',
-                style: GoogleFonts.orbitron(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.white70)),
-            // const SizedBox(
-            //   height: 40.0,
-            // ),
-            SizedBox(
-                height: 400,
-                width: screenWidth,
-                child: MyRiveAnimation(height: 400, width: screenWidth)),
-            GestureDetector(
-              onTap: () {
-                EventsRepository().getEvents();
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const Events()));
-              },
-              child: BorderedSlashBox(
-                padding: EdgeInsets.zero,
-                height: 150,
-                width: screenWidth * 0.85,
-                child: const Center(
-                  child: Text(
-                    'Events',
-                    style: TextStyle(
-                        color: kBrightCyan,
-                        fontFamily: "orbitron",
-                        fontSize: 22.0),
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/app_background.jpeg'),
+              fit: BoxFit.fill)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+        child: Container(
+          decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: screenHeight * 0.06),
+                    child: Text('Concetto',
+                        style: GoogleFonts.orbitron(
+                            fontSize: 46.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
                   ),
-                ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Divider(
+                      color: Colors.white54,
+                    ),
+                  ),
+                  Text('REALITY BEYOND VISION',
+                      style: GoogleFonts.orbitron(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.white70)),
+                  // const SizedBox(
+                  //   height: 40.0,
+                  // ),
+                  SizedBox(
+                      height: 350,
+                      width: screenWidth,
+                      child: MyRiveAnimation(height: 350, width: screenWidth)),
+                  GestureDetector(
+                    onTap: () {
+                      EventsRepository().getEvents();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Events()));
+                    },
+                    child: BorderedSlashBox(
+                      padding: EdgeInsets.zero,
+                      height: 150,
+                      backgroundImage:
+                          'assets/images/slashbox_dearkbackground.png',
+                      width: screenWidth * 0.85,
+                      child: Center(
+                          child: DefaultTextStyle(
+                        style: const TextStyle(
+                          color: kBrightCyan,
+                          fontSize: 22.0,
+                          fontFamily: 'orbitron',
+                        ),
+                        child: AnimatedTextKit(
+                          repeatForever: true,
+                          animatedTexts: [
+                            TypewriterAnimatedText('Events'),
+                            TypewriterAnimatedText('Guest Talks'),
+                          ],
+                        ),
+                      )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  const Center(
+                    child: Text(
+                      'Coming Soon...',
+                      style: TextStyle(
+                          fontFamily: "orbitron",
+                          fontSize: 40,
+                          color: Colors.white),
+                      // style: TextStyle(color: Colors.white, fontSize: 40)
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    '$days:$hours:$minutes:$seconds',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: kBrightCyan,
+                        fontSize: 40),
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  YoutubePlayerContainer(
+                    backgroundColor: kCoolGrey,
+                    width: screenWidth * 0.85,
+                    height: screenHeight * 0.35,
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: TextButton(
+                        onPressed: () {
+                          SponsorsRepository().getSponsors();
+                          GuestTalksRepository().getGetTalks();
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const AboutUs()));
+                        },
+                        child: const Text('About us')),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  followUsLabel,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Uri uri = Uri.parse(
+                                "https://www.facebook.com/Concettoiitdhanbad/");
+                            launchUrl(uri);
+                          },
+                          icon: const FaIcon(
+                            size: 40,
+                            FontAwesomeIcons.facebook,
+                            color: Colors.blue,
+                          )),
+                      IconButton(
+                          onPressed: () {
+                            Uri uri = Uri.parse(
+                                "https://www.instagram.com/concetto.iitism/?hl=en");
+                            launchUrl(uri);
+                          },
+                          icon: const FaIcon(
+                            size: 40,
+                            FontAwesomeIcons.instagram,
+                            color: Colors.purple,
+                          )),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const FaIcon(
+                            size: 40,
+                            FontAwesomeIcons.linkedin,
+                            color: Colors.blue,
+                          )),
+                      IconButton(
+                          onPressed: () {
+                            Uri uri = Uri.parse("https://concetto.in/");
+                            launchUrl(uri);
+                          },
+                          icon: const FaIcon(
+                            size: 40,
+                            FontAwesomeIcons.globe,
+                            color: Colors.blue,
+                          )),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 40,
-            ),
-            const Center(
-              child: Text(
-                'Coming Soon...',
-                style: TextStyle(
-                    fontFamily: "orbitron", fontSize: 40, color: Colors.white),
-                // style: TextStyle(color: Colors.white, fontSize: 40)
-              ),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              '$days:$hours:$minutes:$seconds',
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: kBrightCyan,
-                  fontSize: 40),
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            YoutubePlayerContainer(
-              backgroundColor: kCoolGrey,
-              width: screenWidth * 0.85,
-              height: screenHeight * 0.35,
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const AboutUs()));
-                  },
-                  child: const Text('About us')),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            followUsLabel,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Uri uri = Uri.parse(
-                          "https://www.facebook.com/Concettoiitdhanbad/");
-                      launchUrl(uri);
-                    },
-                    icon: const FaIcon(
-                      size: 40,
-                      FontAwesomeIcons.facebook,
-                      color: Colors.blue,
-                    )),
-                IconButton(
-                    onPressed: () {
-                      Uri uri = Uri.parse(
-                          "https://www.instagram.com/concetto.iitism/?hl=en");
-                      launchUrl(uri);
-                    },
-                    icon: const FaIcon(
-                      size: 40,
-                      FontAwesomeIcons.instagram,
-                      color: Colors.purple,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: const FaIcon(
-                      size: 40,
-                      FontAwesomeIcons.linkedin,
-                      color: Colors.blue,
-                    )),
-                IconButton(
-                    onPressed: () {
-                      Uri uri = Uri.parse("https://concetto.in/");
-                      launchUrl(uri);
-                    },
-                    icon: const FaIcon(
-                      size: 40,
-                      FontAwesomeIcons.globe,
-                      color: Colors.blue,
-                    )),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-          ],
+          ),
         ),
       ),
     );
