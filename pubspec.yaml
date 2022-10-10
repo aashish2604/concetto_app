@@ -48,6 +48,7 @@ dependencies:
   intl: ^0.17.0
   cached_network_image: ^3.2.2
   animated_text_kit: ^4.2.2
+  glassmorphism: ^3.0.0
 
 dev_dependencies:
   flutter_test:

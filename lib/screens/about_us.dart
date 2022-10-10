@@ -1,4 +1,4 @@
-import 'package:concetto_app/screens/core_team.dart';
+import 'package:concetto_app/screens/team_members.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -55,27 +55,27 @@ class AboutUs extends StatelessWidget {
                     'data',
                     style: descriptionTextStyle,
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    'Past Speakers',
-                    style: headingStyle,
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  const Text(
-                    'data',
-                    style: descriptionTextStyle,
-                  ),
+                  // const SizedBox(
+                  //   height: 20.0,
+                  // ),
+                  // Text(
+                  //   'Past Speakers',
+                  //   style: headingStyle,
+                  // ),
+                  // const SizedBox(
+                  //   height: 10.0,
+                  // ),
+                  // const Text(
+                  //   'data',
+                  //   style: descriptionTextStyle,
+                  // ),
                   const SizedBox(
                     height: 20.0,
                   ),
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ViewCoreTeam()));
+                            builder: (context) => const TeamMembers()));
                       },
                       child: const Text('View Core Team'))
                 ],
