@@ -149,6 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: AnimatedTextKit(
                           repeatForever: true,
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => const Events())),
                           animatedTexts: [
                             TypewriterAnimatedText('Events'),
                             TypewriterAnimatedText('Guest Talks'),
@@ -232,7 +235,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.purple,
                           )),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Uri uri = Uri.parse(
+                                "https://www.linkedin.com/company/concetto-iitism-dhanbad/");
+                            launchUrl(uri);
+                          },
                           icon: const FaIcon(
                             size: 40,
                             FontAwesomeIcons.linkedin,
