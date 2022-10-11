@@ -198,8 +198,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: TextButton(
                         onPressed: () {
-                          SponsorsRepository().getSponsors();
-                          GuestTalksRepository().getGetTalks();
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const AboutUs()));
                         },

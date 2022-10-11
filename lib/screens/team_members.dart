@@ -3,7 +3,7 @@ import 'package:concetto_app/models/team_members_model.dart';
 import 'package:concetto_app/repository/team_members_repository.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
-import 'package:concetto_app/widgets/circular_grid_avatar.dart';
+import 'package:concetto_app/widgets/glassmorphic_container.dart';
 import 'package:concetto_app/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -172,7 +172,7 @@ class CoreTeamMemberCard1 extends StatelessWidget {
                               onPressed: () {
                                 Uri routeUri = Uri(
                                     scheme: 'tel',
-                                    path: '+91${teamMembersModel.contact}}');
+                                    path: '+91${teamMembersModel.contact}');
                                 launchUrl(routeUri);
                               },
                               icon: const Icon(
@@ -246,8 +246,10 @@ class CoreTeamMemberCard2 extends StatelessWidget {
                           backgroundColor: Colors.blue,
                           child: IconButton(
                               onPressed: () {
-                                Uri uri = Uri.parse(teamMembersModel.linkedIn);
-                                launchUrl(uri);
+                                Uri routeUri = Uri(
+                                    scheme: 'tel',
+                                    path: '+91${teamMembersModel.contact}');
+                                launchUrl(routeUri);
                               },
                               icon: const Icon(
                                 Icons.phone,

@@ -104,7 +104,8 @@ class EventDetails extends StatelessWidget {
                           ),
                           Text(
                             eventModel.summary,
-                            style: summaryTextStyle,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 22.0),
                           ),
                           const SizedBox(
                             height: 20.0,
@@ -154,14 +155,19 @@ class EventDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: kBrightCyan,
-                child:
-                    const Icon(Icons.assignment_outlined, color: Colors.black),
-                onPressed: () {
-                  Uri uri = Uri.parse(eventModel.brochureLink);
-                  launchUrl(uri);
-                },
+              floatingActionButton: Container(
+                padding: const EdgeInsets.all(2),
+                decoration: const BoxDecoration(
+                    color: kBrightCyan, shape: BoxShape.circle),
+                child: FloatingActionButton(
+                  backgroundColor: Colors.black,
+                  child:
+                      const Icon(Icons.assignment_outlined, color: kBrightCyan),
+                  onPressed: () {
+                    Uri uri = Uri.parse(eventModel.brochureLink);
+                    launchUrl(uri);
+                  },
+                ),
               ),
             ),
           ),

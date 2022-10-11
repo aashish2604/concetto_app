@@ -1,5 +1,5 @@
 import 'package:concetto_app/services/theme/custom_colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -27,7 +27,7 @@ class BorderedSlashBox extends StatelessWidget {
         child: SlashBox(
           height: height - 4,
           width: width - 4,
-          color: kCoolGrey,
+          color: Colors.black,
           backgroundImage: backgroundImage,
           child: Padding(
             padding: padding ??

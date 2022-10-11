@@ -10,11 +10,60 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class Events extends StatelessWidget {
+class Events extends StatefulWidget {
   const Events({super.key});
 
   @override
+  State<Events> createState() => _EventsState();
+}
+
+class _EventsState extends State<Events> {
+  String? selectedType;
+  List<String> filterTypes = ['club', 'departmental', 'informal', 'no filter'];
+  List<EventModel> eventData = [];
+  @override
   Widget build(BuildContext context) {
+    Widget dropDownWidget(List<EventModel> data) {
+      List<EventModel> tempEventData = [];
+      return DropdownButton(
+          icon: const Icon(
+            Icons.filter_alt_sharp,
+            color: Colors.white,
+          ),
+          hint: const Text(
+            'Filter',
+            style: TextStyle(color: Colors.white),
+          ),
+          value: selectedType,
+          dropdownColor: Colors.black,
+          items: filterTypes
+              .map((type) => DropdownMenuItem(
+                    value: type,
+                    child: type != 'no filter'
+                        ? Text(
+                            type,
+                            style: const TextStyle(color: Colors.white),
+                          )
+                        : Text(
+                            type,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                  ))
+              .toList(),
+          onChanged: (type) {
+            for (var model in data) {
+              if (type == 'no filter') {
+                eventData = [];
+              } else if (model.eventType == type) {
+                tempEventData.add(model);
+              }
+            }
+            eventData = tempEventData;
+            selectedType = type;
+            setState(() {});
+          });
+    }
+
     TextStyle headingStyle =
         GoogleFonts.oswald(color: Colors.white, fontSize: 36.0);
 
@@ -34,11 +83,15 @@ class Events extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.data != null) {
                   if (snapshot.data!.isNotEmpty) {
+                    if (eventData.isEmpty) {
+                      eventData = snapshot.data!;
+                    }
                     return SingleChildScrollView(
                         child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: SafeArea(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Center(
                               child: Text(
@@ -47,14 +100,18 @@ class Events extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(
+                              height: 12.0,
+                            ),
+                            dropDownWidget(snapshot.data!),
+                            const SizedBox(
                               height: 36.0,
                             ),
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: ((context, index) => EventsListBox(
-                                  eventModel: snapshot.data![index])),
+                              itemCount: eventData.length,
+                              itemBuilder: ((context, index) =>
+                                  EventsListBox(eventModel: eventData[index])),
                             )
                           ],
                         ),
