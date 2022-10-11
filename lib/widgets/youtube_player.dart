@@ -1,4 +1,3 @@
-import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/slashbox.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,8 @@ class _YoutubePlayerContainerState extends State<YoutubePlayerContainer> {
   Widget build(BuildContext context) {
     return playController != null
         ? YoutubePlayerBuilder(
-            player: YoutubePlayer(controller: playController!),
+            player: YoutubePlayer(
+                controller: playController!, bottomActions: const []),
             builder: (builder, player) {
               return BorderedSlashBox(
                 height: widget.height,
