@@ -5,7 +5,8 @@ import 'package:concetto_app/repository/events_repository.dart';
 import 'package:concetto_app/repository/guest_talks_repository.dart';
 import 'package:concetto_app/repository/sponsors_repository.dart';
 import 'package:concetto_app/screens/about_us.dart';
-import 'package:concetto_app/screens/events/events.dart';
+import 'package:concetto_app/screens/events_guests/events/events.dart';
+import 'package:concetto_app/screens/events_guests/event_guest.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
@@ -132,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       EventsRepository().getEvents();
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Events()));
+                          builder: (context) => const EventsGuests()));
                     },
                     child: BorderedSlashBox(
                       padding: EdgeInsets.zero,
@@ -151,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           repeatForever: true,
                           onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => const Events())),
+                                  builder: (context) => const EventsGuests())),
                           animatedTexts: [
                             TypewriterAnimatedText('Events'),
                             TypewriterAnimatedText('Guest Talks'),

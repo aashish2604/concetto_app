@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/events_model.dart';
 import 'package:concetto_app/repository/events_repository.dart';
-import 'package:concetto_app/screens/events/event_details.dart';
+import 'package:concetto_app/screens/events_guests/events/event_details.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/loading.dart';
