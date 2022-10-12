@@ -9,6 +9,7 @@ import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/screens/events_guests/event_guest.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
+import 'package:concetto_app/widgets/navigation_drawer.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/widgets/slashbox.dart';
 import 'package:concetto_app/widgets/video_player_container.dart';
@@ -99,6 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
+            drawer: const NavigationDrawer(),
+            appBar: AppBar(
+              iconTheme: const IconThemeData(color: Colors.white),
+            ),
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(
               child: Column(
