@@ -67,29 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenHeight = SizeConfig.instance.screenHeight;
     double screenWidth = SizeConfig.instance.screenWidth;
 
-    final Row followUsLabel = Row(children: <Widget>[
-      Expanded(
-        child: Container(
-            margin: const EdgeInsets.only(left: 10.0, right: 15.0),
-            child: const Divider(
-              color: Colors.white70,
-              height: 50,
-            )),
-      ),
-      const Text(
-        "Follow us on",
-        style: TextStyle(color: Colors.white70),
-      ),
-      Expanded(
-        child: Container(
-            margin: const EdgeInsets.only(left: 15.0, right: 10.0),
-            child: const Divider(
-              color: Colors.white70,
-              height: 50,
-            )),
-      ),
-    ]);
-
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -213,55 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  followUsLabel,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse(
-                                "https://www.facebook.com/Concettoiitdhanbad/");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.facebook,
-                            color: Colors.blue,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse(
-                                "https://www.instagram.com/concetto.iitism/?hl=en");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.instagram,
-                            color: Colors.purple,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse(
-                                "https://www.linkedin.com/company/concetto-iitism-dhanbad/");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.linkedin,
-                            color: Colors.blue,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse("https://concetto.in/");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.globe,
-                            color: Colors.blue,
-                          )),
-                    ],
-                  ),
+
                   const SizedBox(
                     height: 40,
                   ),
