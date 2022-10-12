@@ -11,7 +11,7 @@ class EventsGuests extends StatefulWidget {
 }
 
 class _EventsGuestsState extends State<EventsGuests> {
-  final screens = [Events(), GuestTalks()];
+  final screens = [const Events(), const GuestTalks()];
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
