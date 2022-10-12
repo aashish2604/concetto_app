@@ -1,5 +1,6 @@
 class EventModel {
   int id;
+  String eventId;
   String name;
   String subTitle;
   String summary;
@@ -16,6 +17,7 @@ class EventModel {
 
   EventModel(
       {required this.id,
+      required this.eventId,
       required this.name,
       required this.subTitle,
       required this.summary,
@@ -37,8 +39,9 @@ class EventModel {
 
     return EventModel(
         id: json['id'],
+        eventId: json['event_id'],
         name: json['name'],
-        subTitle: json['sub_title'],
+        subTitle: json['presented_by'],
         summary: json['summary'],
         details: json['details'],
         eventType: json['event_type'],
