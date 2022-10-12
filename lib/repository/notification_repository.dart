@@ -14,6 +14,7 @@ class NotificationRepository {
             NotificationModel.fromJson(json);
         notificationList.add(notificationModel);
       }
+      notificationList.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
       return notificationList;
     } on Exception catch (e) {
       return null;
