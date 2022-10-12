@@ -1,6 +1,7 @@
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'dart:ui';
 
 class GlassMorphicListTile extends StatelessWidget {
   final Widget child;
@@ -34,5 +35,46 @@ class GlassMorphicListTile extends StatelessWidget {
           ],
         ),
         child: child);
+  }
+}
+
+class GlassMorphism extends StatelessWidget {
+  final Color? borderColor;
+  final Widget child;
+  final double start;
+  final double end;
+  const GlassMorphism({
+    Key? key,
+    this.borderColor,
+    required this.child,
+    required this.start,
+    required this.end,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(start),
+                Colors.white.withOpacity(end),
+              ],
+              begin: AlignmentDirectional.topStart,
+              end: AlignmentDirectional.bottomEnd,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+              width: 1.5,
+              color: borderColor ?? (Colors.white).withOpacity(0.2),
+            ),
+          ),
+          child: child,
+        ),
+      ),
+    );
   }
 }
