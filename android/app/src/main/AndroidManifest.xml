@@ -2,8 +2,8 @@
     package="com.example.concetto_app">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="concetto"
-        android:name="Concetto"
+       android:label="concetto_app"
+       android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
