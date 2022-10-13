@@ -45,8 +45,8 @@ class _GuestTalksState extends State<GuestTalks> {
             builder: (context, AsyncSnapshot<List<GuestTalksModel>?> snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.data != null) {
-                  if (snapshot.data!.isEmpty) {
-                    if (guestTalksData.isNotEmpty) {
+                  if (snapshot.data!.isNotEmpty) {
+                    if (guestTalksData.isEmpty) {
                       guestTalksData = snapshot.data!;
                     }
                     return SingleChildScrollView(
@@ -139,13 +139,13 @@ class GuestTalksListBox1 extends StatelessWidget {
         color: kBrightCyan, fontSize: 22.0, fontWeight: FontWeight.w600);
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                GuestTalksDetails(guestTalksModel: guestTalksModel)));
-      },
-      child: GlassMorphicListTile(
+    return GlassMorphicListTile(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  GuestTalksDetails(guestTalksModel: guestTalksModel)));
+        },
         child: Center(
           child: Row(
             children: [
@@ -168,23 +168,21 @@ class GuestTalksListBox1 extends StatelessWidget {
               const SizedBox(
                 width: 10.0,
               ),
-              Expanded(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(guestTalksModel.guestName, style: titleTextStyle),
-                      Text(
-                        guestTalksModel.details,
-                        style: subtitleTextStyle,
-                      ),
-                      const SizedBox(
-                        height: 12.0,
-                      ),
-                    ],
-                  ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(guestTalksModel.guestName, style: titleTextStyle),
+                    Text(
+                      guestTalksModel.details,
+                      style: subtitleTextStyle,
+                    ),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                  ],
                 ),
               )
             ],
@@ -205,37 +203,35 @@ class GuestTalksListBox2 extends StatelessWidget {
         color: kBrightCyan, fontSize: 22.0, fontWeight: FontWeight.w600);
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                GuestTalksDetails(guestTalksModel: guestTalksModel)));
-      },
-      child: GlassMorphicListTile(
+    return GlassMorphicListTile(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  GuestTalksDetails(guestTalksModel: guestTalksModel)));
+        },
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 12.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        guestTalksModel.guestName,
-                        style: titleTextStyle,
-                      ),
-                      Text(
-                        guestTalksModel.details,
-                        style: subtitleTextStyle,
-                      ),
-                      const SizedBox(
-                        height: 12.0,
-                      ),
-                    ],
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      guestTalksModel.guestName,
+                      style: titleTextStyle,
+                    ),
+                    Text(
+                      guestTalksModel.details,
+                      style: subtitleTextStyle,
+                    ),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
