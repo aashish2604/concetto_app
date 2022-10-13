@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:concetto_app/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,50 +24,84 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
         const Duration(seconds: 3),
-            () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen())));
+            () => Navigator.of(context).push(_createRoute()));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/app_background.jpeg'),
-            fit: BoxFit.fill),
-      ),
-      child: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.06),
-              child: Text('Concetto',
+    return Scaffold(
+      body: Center(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/app_background.jpeg'),
+                fit: BoxFit.fill),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Concetto',
                   style: GoogleFonts.orbitron(
                       fontSize: 46.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white)),
+                      color: Colors.white),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(2.0),
+                  child: SizedBox(
+                    height: 300,
+                    width: screenWidth,
+                    child: MyRiveAnimation(height: 350, width: screenWidth),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Divider(
+                    color: Colors.white54,
+                  ),
+                ),
+                DefaultTextStyle(
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20.0,
+                    fontFamily: 'orbitron',
+                  ),
+                  child: AnimatedTextKit(
+
+                    repeatForever: true,
+                    animatedTexts: [
+                      TypewriterAnimatedText('REALITY BEYOND VISION'),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 350,
-              width: screenWidth,
-              child: MyRiveAnimation(height: 350, width: screenWidth),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Divider(
-                color: Colors.white54,
-              ),
-            ),
-            Text(
-              'REALITY BEYOND VISION',
-              style: GoogleFonts.orbitron(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.white70),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
+}
+
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.5, 1.0);
+      const end = Offset.zero;
+      final tween = Tween(begin: begin, end: end);
+      final offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
 }

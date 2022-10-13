@@ -110,9 +110,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   //   height: 40.0,
                   // ),
                   SizedBox(
-                      height: 350,
-                      width: screenWidth,
-                      child: MyRiveAnimation(height: 350, width: screenWidth),),
+                    height: 350,
+                    width: screenWidth,
+                    child: MyRiveAnimation(height: 350, width: screenWidth),
+                  ),
                   GestureDetector(
                     onTap: () {
                       EventsRepository().getEvents();
@@ -126,23 +127,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           'assets/images/slashbox_dearkbackground.png',
                       width: screenWidth * 0.85,
                       child: Center(
-                          child: DefaultTextStyle(
-                        style: const TextStyle(
-                          color: kBrightCyan,
-                          fontSize: 22.0,
-                          fontFamily: 'orbitron',
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                            color: kBrightCyan,
+                            fontSize: 22.0,
+                            fontFamily: 'orbitron',
+                          ),
+                          child: AnimatedTextKit(
+                            repeatForever: true,
+                            onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const EventsGuests())),
+                            animatedTexts: [
+                              TypewriterAnimatedText('Events'),
+                              TypewriterAnimatedText('Guest Talks'),
+                            ],
+                          ),
                         ),
-                        child: AnimatedTextKit(
-                          repeatForever: true,
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => const EventsGuests())),
-                          animatedTexts: [
-                            TypewriterAnimatedText('Events'),
-                            TypewriterAnimatedText('Guest Talks'),
-                          ],
-                        ),
-                      )),
+                      ),
                     ),
                   ),
                   const SizedBox(
