@@ -23,8 +23,6 @@ class GuestTalks extends StatefulWidget {
 }
 
 class _GuestTalksState extends State<GuestTalks> {
-  List<GuestTalksModel> guestTalksData = [];
-
   @override
   Widget build(BuildContext context) {
     TextStyle headingStyle =
@@ -46,11 +44,8 @@ class _GuestTalksState extends State<GuestTalks> {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.data != null) {
                   if (snapshot.data!.isNotEmpty) {
-                    if (guestTalksData.isEmpty) {
-                      guestTalksData = snapshot.data!;
-                    }
                     return SingleChildScrollView(
-                        child: Container(
+                        child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: SafeArea(
                         child: Column(
@@ -65,34 +60,26 @@ class _GuestTalksState extends State<GuestTalks> {
                             const SizedBox(
                               height: 20.0,
                             ),
-                            Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Expanded(
-                                child: GridView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: snapshot.data!.length,
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 1,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10,
-                                    mainAxisExtent: 190.0,
-                                  ),
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index) {
-                                    if (index % 2 == 0) {
-                                      return GuestTalksListBox1(
-                                          guestTalksModel:
-                                              snapshot.data![index]);
-                                    } else {
-                                      return GuestTalksListBox1(
-                                          guestTalksModel:
-                                              snapshot.data![index]);
-                                    }
-                                  },
-                                ),
+                            GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: snapshot.data!.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                mainAxisExtent: 190.0,
                               ),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                if (index % 2 == 0) {
+                                  return GuestTalksListBox1(
+                                      guestTalksModel: snapshot.data![index]);
+                                } else {
+                                  return GuestTalksListBox2(
+                                      guestTalksModel: snapshot.data![index]);
+                                }
+                              },
                             ),
                           ],
                         ),
@@ -168,21 +155,28 @@ class GuestTalksListBox1 extends StatelessWidget {
               const SizedBox(
                 width: 10.0,
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(guestTalksModel.guestName, style: titleTextStyle),
-                    Text(
-                      guestTalksModel.details,
-                      style: subtitleTextStyle,
-                    ),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                  ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0, vertical: 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(guestTalksModel.guestName,
+                          maxLines: 2,
+                          style: titleTextStyle,
+                          overflow: TextOverflow.ellipsis),
+                      Text(
+                        guestTalksModel.summary,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: subtitleTextStyle,
+                      ),
+                      const SizedBox(
+                        height: 12.0,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -214,24 +208,28 @@ class GuestTalksListBox2 extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      guestTalksModel.guestName,
-                      style: titleTextStyle,
-                    ),
-                    Text(
-                      guestTalksModel.details,
-                      style: subtitleTextStyle,
-                    ),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                  ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        guestTalksModel.guestName,
+                        maxLines: 2,
+                        style: titleTextStyle,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(guestTalksModel.summary,
+                          style: subtitleTextStyle,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis),
+                      const SizedBox(
+                        height: 12.0,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
