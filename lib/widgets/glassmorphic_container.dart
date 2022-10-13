@@ -4,8 +4,10 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'dart:ui';
 
 class GlassMorphicListTile extends StatelessWidget {
+  final Color borderColor;
   final Widget child;
-  const GlassMorphicListTile({required this.child, super.key});
+  const GlassMorphicListTile(
+      {this.borderColor = kBrightCyan, required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,8 @@ class GlassMorphicListTile extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            kBrightCyan.withOpacity(0.5),
-            kBrightCyan.withOpacity(0.5),
+            borderColor.withOpacity(0.5),
+            borderColor.withOpacity(0.5),
           ],
         ),
         child: child);

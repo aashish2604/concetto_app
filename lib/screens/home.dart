@@ -12,6 +12,7 @@ import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/navigation_drawer.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/widgets/slashbox.dart';
+import 'package:concetto_app/widgets/sponsors_list.dart';
 import 'package:concetto_app/widgets/video_player_container.dart';
 import 'package:concetto_app/widgets/youtube_player.dart';
 import 'package:flutter/material.dart';
@@ -178,6 +179,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 60,
                   ),
+
+                  const Text(
+                    'Major Sponsors',
+                    style: TextStyle(
+                        fontFamily: "orbitron",
+                        fontSize: 30,
+                        color: Colors.white),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  const SponsorList(
+                    isMajorRequired: true,
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: TextButton(
@@ -189,10 +207,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 20.0,
-                  ),
-
-                  const SizedBox(
-                    height: 40,
                   ),
                 ],
               ),
