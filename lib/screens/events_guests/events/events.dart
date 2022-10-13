@@ -89,8 +89,41 @@ class _EventsState extends State<Events> {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.data != null) {
                       if (snapshot.data!.isNotEmpty) {
-                        if (eventData.isEmpty) {
+                        if ((eventData.isEmpty && selectedType == null) ||
+                            (eventData.isEmpty &&
+                                selectedType == 'no filter')) {
                           eventData = snapshot.data!;
+                        } else if (eventData.isEmpty && selectedType != null) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: SafeArea(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'Events',
+                                      style: headingStyle,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 12.0,
+                                  ),
+                                  dropDownWidget(snapshot.data!),
+                                  const SizedBox(
+                                    height: 36,
+                                  ),
+                                  const Center(
+                                    child: Text(
+                                      'No events in this category',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
                         }
                         return SingleChildScrollView(
                             child: Padding(
