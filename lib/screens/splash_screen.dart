@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds: 3),
+        const Duration(seconds: 4),
             () => Navigator.of(context).push(_createRoute()));
   }
 
@@ -57,12 +57,6 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: MyRiveAnimation(height: 350, width: screenWidth),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Divider(
-                    color: Colors.white54,
-                  ),
-                ),
                 DefaultTextStyle(
                   style: const TextStyle(
                     color: Colors.white70,
@@ -71,7 +65,6 @@ class _SplashScreenState extends State<SplashScreen> {
                     fontFamily: 'orbitron',
                   ),
                   child: AnimatedTextKit(
-
                     repeatForever: true,
                     animatedTexts: [
                       TypewriterAnimatedText('REALITY BEYOND VISION'),
@@ -93,7 +86,7 @@ Route _createRoute() {
     pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
 
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.5, 1.0);
+      const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
       final tween = Tween(begin: begin, end: end);
       final offsetAnimation = animation.drive(tween);

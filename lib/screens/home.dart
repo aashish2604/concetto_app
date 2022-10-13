@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   //   height: 40.0,
                   // ),
                   SizedBox(
-                    height: 350,
+                    height: 250,
                     width: screenWidth,
                     child: MyRiveAnimation(height: 350, width: screenWidth),
                   ),
