@@ -26,23 +26,21 @@ class SponsorList extends StatelessWidget {
                   padding: gridPadding ??
                       const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 0.0),
-                  child: Expanded(
-                    child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: snapshot.data!.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        mainAxisExtent: 190.0,
-                      ),
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (context, index) {
-                        return SponsorsGridTile(data: snapshot.data![index]);
-                      },
+                  child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: snapshot.data!.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      mainAxisExtent: 190.0,
                     ),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, index) {
+                      return SponsorsGridTile(data: snapshot.data![index]);
+                    },
                   ),
                 );
               } else {
@@ -86,6 +84,8 @@ class SponsorsGridTile extends StatelessWidget {
         launchUrl(uri);
       },
       child: GlassMorphicListTile(
+        height: 190,
+        width: double.infinity,
         borderColor: Colors.grey,
         child: Column(
           children: [

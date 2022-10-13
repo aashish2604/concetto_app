@@ -127,6 +127,8 @@ class GuestTalksListBox1 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
+      height: 190,
+      width: double.infinity,
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -199,6 +201,8 @@ class GuestTalksListBox2 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
+      height: 190,
+      width: double.infinity,
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(

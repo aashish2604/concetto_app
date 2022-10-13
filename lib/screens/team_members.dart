@@ -51,30 +51,28 @@ class TeamMembers extends StatelessWidget {
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Expanded(
-                                child: GridView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: snapshot.data!.length,
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 1,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10,
-                                    mainAxisExtent: 190.0,
-                                  ),
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index) {
-                                    if (index % 2 == 0) {
-                                      return CoreTeamMemberCard1(
-                                          teamMembersModel:
-                                              snapshot.data![index]);
-                                    } else {
-                                      return CoreTeamMemberCard2(
-                                          teamMembersModel:
-                                              snapshot.data![index]);
-                                    }
-                                  },
+                              child: GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: snapshot.data!.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 1,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  mainAxisExtent: 190.0,
                                 ),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  if (index % 2 == 0) {
+                                    return CoreTeamMemberCard1(
+                                        teamMembersModel:
+                                            snapshot.data![index]);
+                                  } else {
+                                    return CoreTeamMemberCard2(
+                                        teamMembersModel:
+                                            snapshot.data![index]);
+                                  }
+                                },
                               ),
                             );
                           } else {
@@ -127,6 +125,8 @@ class CoreTeamMemberCard1 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
+      height: 190,
+      width: double.infinity,
       child: Center(
         child: Row(
           children: [
@@ -219,6 +219,8 @@ class CoreTeamMemberCard2 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
+      height: 190,
+      width: double.infinity,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,

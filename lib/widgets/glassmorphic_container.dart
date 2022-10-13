@@ -6,12 +6,20 @@ import 'dart:ui';
 class GlassMorphicListTile extends StatelessWidget {
   final Color borderColor;
   final Widget child;
+  final double width;
+  final double height;
   const GlassMorphicListTile(
-      {this.borderColor = kBrightCyan, required this.child, super.key});
+      {this.borderColor = kBrightCyan,
+      required this.child,
+      required this.height,
+      required this.width,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GlassmorphicFlexContainer(
+    return GlassmorphicContainer(
+        height: height,
+        width: width,
         borderRadius: 20,
         blur: 20,
         // padding: const EdgeInsets.all(40),
