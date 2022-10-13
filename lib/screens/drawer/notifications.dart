@@ -111,7 +111,7 @@ class NotificationListTile extends StatelessWidget {
       child: GlassMorphism(
           borderColor: kBrightCyan,
           start: 0.25,
-          end: 0.5,
+          end: 0.3,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
             child: Column(

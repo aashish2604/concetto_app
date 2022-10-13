@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/sponsors_model.dart';
 import 'package:concetto_app/repository/sponsors_repository.dart';
+import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/widgets/glassmorphic_container.dart';
 import 'package:concetto_app/widgets/loading.dart';
 import 'package:flutter/material.dart';
@@ -95,12 +96,13 @@ class SponsorsGridTile extends StatelessWidget {
               imageUrl: data.logo,
               placeholder: (context, url) =>
                   const Center(child: LoadingWidget()),
-              errorWidget: (context, url, error) => const Center(
-                child: Icon(
-                  Icons.error_outline,
-                  size: 76.0,
-                ),
-              ),
+              errorWidget: (context, url, error) {
+                try {
+                  return const CachedNetworkImageError();
+                } on Exception catch (e) {
+                  return const CachedNetworkImageError();
+                }
+              },
             ),
             const SizedBox(height: 4.0),
             Padding(

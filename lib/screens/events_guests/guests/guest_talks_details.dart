@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/key_value_text.dart';
 import 'package:concetto_app/widgets/loading.dart';
@@ -18,19 +19,19 @@ class GuestTalksDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const TextStyle titleTextStyle =
-    TextStyle(fontFamily: "orbitron", fontSize: 32.0, color: Colors.white);
+        TextStyle(fontFamily: "orbitron", fontSize: 32.0, color: Colors.white);
     const TextStyle subTitleTextStyle =
-    TextStyle(fontSize: 22.0, color: Colors.white70);
+        TextStyle(fontSize: 22.0, color: Colors.white70);
     final TextStyle headingTextStyle =
-    GoogleFonts.oswald(color: Colors.white, fontSize: 32.0);
+        GoogleFonts.oswald(color: Colors.white, fontSize: 32.0);
     final TextStyle summaryTextStyle =
-    GoogleFonts.sourceCodePro(color: Colors.white, fontSize: 22.0);
+        GoogleFonts.sourceCodePro(color: Colors.white, fontSize: 22.0);
     final String startTime =
-    DateFormat('dd MMM, h:mm a').format(guestTalksModel.startTimestamp);
+        DateFormat('dd MMM, h:mm a').format(guestTalksModel.startTimestamp);
     final String endTime =
-    DateFormat('dd MMM, h:mm a').format(guestTalksModel.endTimestamp);
+        DateFormat('dd MMM, h:mm a').format(guestTalksModel.endTimestamp);
     final String registrationDeadline =
-    DateFormat('dd MMM, h:mm a').format(guestTalksModel.registerTimestamp);
+        DateFormat('dd MMM, h:mm a').format(guestTalksModel.registerTimestamp);
 
     return Container(
       decoration: const BoxDecoration(
@@ -56,13 +57,14 @@ class GuestTalksDetails extends StatelessWidget {
                             fit: BoxFit.fill,
                             imageUrl: guestTalksModel.image,
                             placeholder: (context, url) =>
-                            const Center(child: LoadingWidget()),
-                            errorWidget: (context, url, error) => const Center(
-                              child: Icon(
-                                Icons.error_outline,
-                                size: 76.0,
-                              ),
-                            ),
+                                const Center(child: LoadingWidget()),
+                            errorWidget: (context, url, error) {
+                              try {
+                                return const CachedNetworkImageError();
+                              } on Exception catch (e) {
+                                return const CachedNetworkImageError();
+                              }
+                            },
                           ),
                         ),
                         SafeArea(
@@ -126,16 +128,18 @@ class GuestTalksDetails extends StatelessWidget {
                               keyText: 'Registration',
                               valueText: registrationDeadline),
                           KeyValueText(
-                              keyText: 'Venue', valueText: guestTalksModel.venue),
+                              keyText: 'Venue',
+                              valueText: guestTalksModel.venue),
                           const SizedBox(
                             height: 20.0,
                           ),
                           Padding(
                             padding:
-                            const EdgeInsets.symmetric(horizontal: 12.0),
+                                const EdgeInsets.symmetric(horizontal: 12.0),
                             child: TextButton(
                                 onPressed: () {
-                                  Uri uri = Uri.parse(guestTalksModel.registerLink);
+                                  Uri uri =
+                                      Uri.parse(guestTalksModel.registerLink);
                                   launchUrl(uri);
                                 },
                                 child: const Text('Register')),

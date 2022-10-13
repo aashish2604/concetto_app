@@ -144,12 +144,13 @@ class GuestTalksListBox1 extends StatelessWidget {
                   imageUrl: guestTalksModel.image,
                   placeholder: (context, url) =>
                       const Center(child: LoadingWidget()),
-                  errorWidget: (context, url, error) => const Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      size: 76.0,
-                    ),
-                  ),
+                  errorWidget: (context, url, error) {
+                    try {
+                      return const CachedNetworkImageError();
+                    } on Exception catch (e) {
+                      return const CachedNetworkImageError();
+                    }
+                  },
                 ),
               ),
               const SizedBox(
@@ -243,12 +244,13 @@ class GuestTalksListBox2 extends StatelessWidget {
                   imageUrl: guestTalksModel.image,
                   placeholder: (context, url) =>
                       const Center(child: LoadingWidget()),
-                  errorWidget: (context, url, error) => const Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      size: 76.0,
-                    ),
-                  ),
+                  errorWidget: (context, url, error) {
+                    try {
+                      return const CachedNetworkImageError();
+                    } on Exception catch (e) {
+                      return const CachedNetworkImageError();
+                    }
+                  },
                 ),
               ),
             ],

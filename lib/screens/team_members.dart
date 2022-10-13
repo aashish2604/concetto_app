@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/team_members_model.dart';
 import 'package:concetto_app/repository/team_members_repository.dart';
+import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/glassmorphic_container.dart';
@@ -137,12 +138,13 @@ class CoreTeamMemberCard1 extends StatelessWidget {
                 imageUrl: teamMembersModel.image,
                 placeholder: (context, url) =>
                     const Center(child: LoadingWidget()),
-                errorWidget: (context, url, error) => const Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    size: 76.0,
-                  ),
-                ),
+                errorWidget: (context, url, error) {
+                  try {
+                    return const CachedNetworkImageError();
+                  } on Exception catch (e) {
+                    return const CachedNetworkImageError();
+                  }
+                },
               ),
             ),
             const SizedBox(
@@ -286,12 +288,13 @@ class CoreTeamMemberCard2 extends StatelessWidget {
                 imageUrl: teamMembersModel.image,
                 placeholder: (context, url) =>
                     const Center(child: LoadingWidget()),
-                errorWidget: (context, url, error) => const Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    size: 76.0,
-                  ),
-                ),
+                errorWidget: (context, url, error) {
+                  try {
+                    return const CachedNetworkImageError();
+                  } on Exception catch (e) {
+                    return const CachedNetworkImageError();
+                  }
+                },
               ),
             ),
           ],

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/events_model.dart';
+import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/key_value_text.dart';
 import 'package:concetto_app/widgets/loading.dart';
@@ -56,12 +57,13 @@ class EventDetails extends StatelessWidget {
                             imageUrl: eventModel.image,
                             placeholder: (context, url) =>
                                 const Center(child: LoadingWidget()),
-                            errorWidget: (context, url, error) => const Center(
-                              child: Icon(
-                                Icons.error_outline,
-                                size: 76.0,
-                              ),
-                            ),
+                            errorWidget: (context, url, error) {
+                              try {
+                                return const CachedNetworkImageError();
+                              } on Exception catch (e) {
+                                return const CachedNetworkImageError();
+                              }
+                            },
                           ),
                         ),
                         SafeArea(

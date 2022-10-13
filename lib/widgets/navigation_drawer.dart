@@ -45,7 +45,17 @@ class NavigationDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 30.0, bottom: 10.0),
                 child: GestureDetector(
-                  child: const CircleAvatar(radius: 50),
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image:
+                                AssetImage('assets/images/concetto_logo.png'))),
+                  ),
                   onTap: () {
                     Uri uri = Uri.parse("https://concetto.in/");
                     launchUrl(uri);

@@ -201,12 +201,13 @@ class EventsListBox extends StatelessWidget {
                   imageUrl: eventModel.image,
                   placeholder: (context, url) =>
                       const Center(child: LoadingWidget()),
-                  errorWidget: (context, url, error) => const Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      size: 76.0,
-                    ),
-                  ),
+                  errorWidget: (context, url, error) {
+                    try {
+                      return const CachedNetworkImageError();
+                    } on Exception catch (e) {
+                      return const CachedNetworkImageError();
+                    }
+                  },
                 ),
               ),
               Padding(
@@ -249,6 +250,34 @@ class EventsListBox extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CachedNetworkImageError extends StatelessWidget {
+  final double size;
+  const CachedNetworkImageError({this.size = 76, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            color: Colors.white60,
+            Icons.error_outline,
+            size: size,
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          const Text(
+            'Some error occured',
+            style: TextStyle(color: Colors.white60),
+          )
+        ],
       ),
     );
   }
