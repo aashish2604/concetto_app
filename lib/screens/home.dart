@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                       height: 350,
                       width: screenWidth,
-                      child: MyRiveAnimation(height: 350, width: screenWidth)),
+                      child: MyRiveAnimation(height: 350, width: screenWidth),),
                   GestureDetector(
                     onTap: () {
                       EventsRepository().getEvents();
