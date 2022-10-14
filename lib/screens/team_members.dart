@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/team_members_model.dart';
 import 'package:concetto_app/repository/team_members_repository.dart';
+import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/glassmorphic_container.dart';
@@ -50,30 +51,28 @@ class TeamMembers extends StatelessWidget {
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Expanded(
-                                child: GridView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: snapshot.data!.length,
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 1,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 10,
-                                    mainAxisExtent: 190.0,
-                                  ),
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index) {
-                                    if (index % 2 == 0) {
-                                      return CoreTeamMemberCard1(
-                                          teamMembersModel:
-                                              snapshot.data![index]);
-                                    } else {
-                                      return CoreTeamMemberCard2(
-                                          teamMembersModel:
-                                              snapshot.data![index]);
-                                    }
-                                  },
+                              child: GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: snapshot.data!.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 1,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  mainAxisExtent: 190.0,
                                 ),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  if (index % 2 == 0) {
+                                    return CoreTeamMemberCard1(
+                                        teamMembersModel:
+                                            snapshot.data![index]);
+                                  } else {
+                                    return CoreTeamMemberCard2(
+                                        teamMembersModel:
+                                            snapshot.data![index]);
+                                  }
+                                },
                               ),
                             );
                           } else {
@@ -126,6 +125,8 @@ class CoreTeamMemberCard1 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
+      height: 190,
+      width: double.infinity,
       child: Center(
         child: Row(
           children: [
@@ -137,12 +138,13 @@ class CoreTeamMemberCard1 extends StatelessWidget {
                 imageUrl: teamMembersModel.image,
                 placeholder: (context, url) =>
                     const Center(child: LoadingWidget()),
-                errorWidget: (context, url, error) => const Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    size: 76.0,
-                  ),
-                ),
+                errorWidget: (context, url, error) {
+                  try {
+                    return const CachedNetworkImageError();
+                  } on Exception catch (e) {
+                    return const CachedNetworkImageError();
+                  }
+                },
               ),
             ),
             const SizedBox(
@@ -217,6 +219,8 @@ class CoreTeamMemberCard2 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
+      height: 190,
+      width: double.infinity,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -286,12 +290,13 @@ class CoreTeamMemberCard2 extends StatelessWidget {
                 imageUrl: teamMembersModel.image,
                 placeholder: (context, url) =>
                     const Center(child: LoadingWidget()),
-                errorWidget: (context, url, error) => const Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    size: 76.0,
-                  ),
-                ),
+                errorWidget: (context, url, error) {
+                  try {
+                    return const CachedNetworkImageError();
+                  } on Exception catch (e) {
+                    return const CachedNetworkImageError();
+                  }
+                },
               ),
             ),
           ],

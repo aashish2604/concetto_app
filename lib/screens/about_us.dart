@@ -1,4 +1,5 @@
 import 'package:concetto_app/screens/team_members.dart';
+import 'package:concetto_app/widgets/sponsors_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,8 +15,7 @@ class AboutUs extends StatelessWidget {
         TextStyle(color: Colors.white, fontSize: 18.0);
 
     const String aboutUsDescription =
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like.";
-
+        "CONCETTO-2022, the annual Techno-Management fest of IIT (ISM) Dhanbad will be organized from 21th to 23th October 2022, where every year, thousands of participants from all across the country come to compete in the largest techno-management fest of eastern India. Participants show their technical and management skills on one common platform, CONCETTO.";
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -48,12 +48,13 @@ class AboutUs extends StatelessWidget {
                     'Sponsers',
                     style: headingStyle,
                   ),
-                  const SizedBox(
-                    height: 10.0,
+                  const SizedBox(height: 20.0),
+                  const SponsorList(
+                    isMajorRequired: false,
+                    gridPadding: EdgeInsets.zero,
                   ),
-                  const Text(
-                    'data',
-                    style: descriptionTextStyle,
+                  const SizedBox(
+                    height: 20.0,
                   ),
                   // const SizedBox(
                   //   height: 20.0,
@@ -77,7 +78,10 @@ class AboutUs extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const TeamMembers()));
                       },
-                      child: const Text('View Core Team'))
+                      child: const Text('View Core Team')),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                 ],
               ),
             ),

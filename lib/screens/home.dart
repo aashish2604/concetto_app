@@ -8,8 +8,11 @@ import 'package:concetto_app/screens/about_us.dart';
 import 'package:concetto_app/screens/events_guests/event_guest.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
+import 'package:concetto_app/widgets/navigation_drawer.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/widgets/slashbox.dart';
+import 'package:concetto_app/widgets/sponsors_list.dart';
+import 'package:concetto_app/widgets/video_player_container.dart';
 import 'package:concetto_app/widgets/youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -62,29 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenHeight = SizeConfig.instance.screenHeight;
     double screenWidth = SizeConfig.instance.screenWidth;
 
-    final Row followUsLabel = Row(children: <Widget>[
-      Expanded(
-        child: Container(
-            margin: const EdgeInsets.only(left: 10.0, right: 15.0),
-            child: const Divider(
-              color: Colors.white70,
-              height: 50,
-            )),
-      ),
-      const Text(
-        "Follow us on",
-        style: TextStyle(color: Colors.white70),
-      ),
-      Expanded(
-        child: Container(
-            margin: const EdgeInsets.only(left: 15.0, right: 10.0),
-            child: const Divider(
-              color: Colors.white70,
-              height: 50,
-            )),
-      ),
-    ]);
-
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
@@ -95,6 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
+            drawer: const NavigationDrawer(),
+            appBar: AppBar(
+              iconTheme: const IconThemeData(color: Colors.white),
+            ),
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(
               child: Column(
@@ -122,9 +107,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   //   height: 40.0,
                   // ),
                   SizedBox(
-                      height: 350,
-                      width: screenWidth,
-                      child: MyRiveAnimation(height: 350, width: screenWidth)),
+                    height: 250,
+                    width: screenWidth,
+                    child: MyRiveAnimation(height: 350, width: screenWidth),
+                  ),
                   GestureDetector(
                     onTap: () {
                       EventsRepository().getEvents();
@@ -138,23 +124,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           'assets/images/slashbox_dearkbackground.png',
                       width: screenWidth * 0.85,
                       child: Center(
-                          child: DefaultTextStyle(
-                        style: const TextStyle(
-                          color: kBrightCyan,
-                          fontSize: 22.0,
-                          fontFamily: 'orbitron',
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                            color: kBrightCyan,
+                            fontSize: 22.0,
+                            fontFamily: 'orbitron',
+                          ),
+                          child: AnimatedTextKit(
+                            repeatForever: true,
+                            onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const EventsGuests())),
+                            animatedTexts: [
+                              TypewriterAnimatedText('Events'),
+                              TypewriterAnimatedText('Guest Talks'),
+                            ],
+                          ),
                         ),
-                        child: AnimatedTextKit(
-                          repeatForever: true,
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) => const EventsGuests())),
-                          animatedTexts: [
-                            TypewriterAnimatedText('Events'),
-                            TypewriterAnimatedText('Guest Talks'),
-                          ],
-                        ),
-                      )),
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -191,6 +179,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 60,
                   ),
+
+                  const Text(
+                    'Major Sponsors',
+                    style: TextStyle(
+                        fontFamily: "orbitron",
+                        fontSize: 30,
+                        color: Colors.white),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  const SponsorList(
+                    isMajorRequired: true,
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: TextButton(
@@ -202,58 +207,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(
                     height: 20.0,
-                  ),
-                  followUsLabel,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse(
-                                "https://www.facebook.com/Concettoiitdhanbad/");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.facebook,
-                            color: Colors.blue,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse(
-                                "https://www.instagram.com/concetto.iitism/?hl=en");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.instagram,
-                            color: Colors.purple,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse(
-                                "https://www.linkedin.com/company/concetto-iitism-dhanbad/");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.linkedin,
-                            color: Colors.blue,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            Uri uri = Uri.parse("https://concetto.in/");
-                            launchUrl(uri);
-                          },
-                          icon: const FaIcon(
-                            size: 40,
-                            FontAwesomeIcons.globe,
-                            color: Colors.blue,
-                          )),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40,
                   ),
                 ],
               ),

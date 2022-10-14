@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/events_model.dart';
 import 'package:concetto_app/repository/events_repository.dart';
@@ -72,77 +74,118 @@ class _EventsState extends State<Events> {
           image: DecorationImage(
               image: AssetImage('assets/images/app_background.jpeg'),
               fit: BoxFit.fill)),
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-        ),
-        body: FutureBuilder(
-            future: EventsRepository().getEvents(),
-            builder: (context, AsyncSnapshot<List<EventModel>?> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.data != null) {
-                  if (snapshot.data!.isNotEmpty) {
-                    if (eventData.isEmpty) {
-                      eventData = snapshot.data!;
-                    }
-                    return SingleChildScrollView(
-                        child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: SafeArea(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Center(
-                              child: Text(
-                                'Events',
-                                style: headingStyle,
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+        child: Container(
+          decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+            ),
+            body: FutureBuilder(
+                future: EventsRepository().getEvents(),
+                builder: (context, AsyncSnapshot<List<EventModel>?> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.data != null) {
+                      if (snapshot.data!.isNotEmpty) {
+                        if ((eventData.isEmpty && selectedType == null) ||
+                            (eventData.isEmpty &&
+                                selectedType == 'no filter')) {
+                          eventData = snapshot.data!;
+                        } else if (eventData.isEmpty && selectedType != null) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: SafeArea(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'Events',
+                                      style: headingStyle,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 12.0,
+                                  ),
+                                  dropDownWidget(snapshot.data!),
+                                  const SizedBox(
+                                    height: 36,
+                                  ),
+                                  const Center(
+                                    child: Text(
+                                      'No events in this category',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(
-                              height: 12.0,
+                          );
+                        }
+                        return SingleChildScrollView(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: SafeArea(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Center(
+                                  child: Text(
+                                    'Events',
+                                    style: headingStyle,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 12.0,
+                                ),
+                                dropDownWidget(snapshot.data!),
+                                const SizedBox(
+                                  height: 36.0,
+                                ),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: eventData.length,
+                                  itemBuilder: ((context, index) =>
+                                      EventsListBox(
+                                          eventModel: eventData[index])),
+                                )
+                              ],
                             ),
-                            dropDownWidget(snapshot.data!),
-                            const SizedBox(
-                              height: 36.0,
-                            ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: eventData.length,
-                              itemBuilder: ((context, index) =>
-                                  EventsListBox(eventModel: eventData[index])),
-                            )
-                          ],
+                          ),
+                        ));
+                      } else {
+                        return const Center(
+                          child: Text(
+                            'No Current Events',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }
+                    } else {
+                      return const Center(
+                        child: Text(
+                          'No Data Found',
+                          style: TextStyle(color: Colors.white),
                         ),
-                      ),
-                    ));
+                      );
+                    }
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return const LoadingWidget();
                   } else {
                     return const Center(
-                      child: Text(
-                        'No Current Events',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    );
-                  }
-                } else {
-                  return const Center(
-                    child: Text(
-                      'No Data Found',
+                        child: Text(
+                      'Some error occured',
                       style: TextStyle(color: Colors.white),
-                    ),
-                  );
-                }
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return const LoadingWidget();
-              } else {
-                return const Center(
-                    child: Text(
-                  'Some error occured',
-                  style: TextStyle(color: Colors.white),
-                ));
-              }
-            }),
+                    ));
+                  }
+                }),
+          ),
+        ),
       ),
     );
   }
@@ -191,12 +234,13 @@ class EventsListBox extends StatelessWidget {
                   imageUrl: eventModel.image,
                   placeholder: (context, url) =>
                       const Center(child: LoadingWidget()),
-                  errorWidget: (context, url, error) => const Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      size: 76.0,
-                    ),
-                  ),
+                  errorWidget: (context, url, error) {
+                    try {
+                      return const CachedNetworkImageError();
+                    } on Exception catch (e) {
+                      return const CachedNetworkImageError();
+                    }
+                  },
                 ),
               ),
               Padding(
@@ -212,6 +256,8 @@ class EventsListBox extends StatelessWidget {
                     Text(
                       eventModel.subTitle,
                       style: subtitleTextStyle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       eventModel.summary,
@@ -237,6 +283,34 @@ class EventsListBox extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CachedNetworkImageError extends StatelessWidget {
+  final double size;
+  const CachedNetworkImageError({this.size = 76, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            color: Colors.white60,
+            Icons.error_outline,
+            size: size,
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          const Text(
+            'Some error occured',
+            style: TextStyle(color: Colors.white60),
+          )
+        ],
       ),
     );
   }

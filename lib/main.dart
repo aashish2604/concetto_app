@@ -1,4 +1,5 @@
 import 'package:concetto_app/screens/home.dart';
+import 'package:concetto_app/screens/splash_screen.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/theme.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           title: 'Concetto App',
           navigatorKey: navigatorKey,
           theme: AppTheme().themeData(),
-          home: const HomeScreen(),
+          home: const SplashScreen(),
         );
       });
     });
