@@ -1,11 +1,10 @@
+import 'dart:async';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:concetto_app/repository/events_repository.dart';
-import 'package:concetto_app/repository/guest_talks_repository.dart';
-import 'package:concetto_app/repository/sponsors_repository.dart';
 import 'package:concetto_app/screens/about_us.dart';
-import 'package:concetto_app/screens/events_guests/events/events.dart';
 import 'package:concetto_app/screens/events_guests/event_guest.dart';
 import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
@@ -17,8 +16,6 @@ import 'package:concetto_app/widgets/video_player_container.dart';
 import 'package:concetto_app/widgets/youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'dart:async';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -214,9 +211,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                openWhatsapp();
+              },
+              child: Container(
+                child: Image.asset('assets/images/whatsapp.png'),
+              ),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  openWhatsapp() async {
+    var whatsapp = "+919199892122";
+    var whatsappAndroid ="https://api.whatsapp.com//send?phone=$whatsapp&text=Hello , Can you please help me out .  I have a doubt regarding ";
+    var whatappURL_ios = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+    if (Platform.isIOS) {
+      // for iOS phone only
+      if (await canLaunch(whatappURL_ios)) {
+        await launch(whatappURL_ios, forceSafariVC: false);
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: new Text("whatsapp no installed")));
+      }
+    } else {
+      // android , web
+      if (await canLaunch(whatsappAndroid)) {
+        await launch(whatsappAndroid);
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: new Text("whatsapp no installed")));
+      }
+    }
   }
 }
