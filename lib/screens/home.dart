@@ -274,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   openWhatsapp() async {
     var whatsapp = "+919199892122";
-    var whatsappAndroid ="https://api.whatsapp.com//send?phone=$whatsapp&text=hello";
+    var whatsappAndroid ="https://api.whatsapp.com//send?phone=$whatsapp&text=Hello , Can you please help me out .  I have a doubt regarding ";
     var whatappURL_ios = "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
     if (Platform.isIOS) {
       // for iOS phone only
