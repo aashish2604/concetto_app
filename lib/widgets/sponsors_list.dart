@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:concetto_app/models/sponsors_model.dart';
 import 'package:concetto_app/repository/sponsors_repository.dart';
 import 'package:concetto_app/screens/events_guests/events/events.dart';
+import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/glassmorphic_container.dart';
 import 'package:concetto_app/widgets/loading.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +47,11 @@ class SponsorList extends StatelessWidget {
               } else {
                 return const Center(
                   child: Text(
-                    'No Data Found',
-                    style: TextStyle(color: Colors.white),
+                    'Coming soon....',
+                    style: TextStyle(
+                        fontFamily: "orbitron",
+                        fontSize: 20,
+                        color: kBrightCyan),
                   ),
                 );
               }

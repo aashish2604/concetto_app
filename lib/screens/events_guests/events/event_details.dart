@@ -128,13 +128,14 @@ class EventDetails extends StatelessWidget {
                             height: 12.0,
                           ),
                           KeyValueText(
-                              keyText: 'Registration',
+                              keyText: 'Register before',
                               valueText: registrationDeadline),
                           KeyValueText(
                               keyText: 'Venue', valueText: eventModel.venue),
                           KeyValueText(
                               keyText: 'Event type',
-                              valueText: eventModel.eventType),
+                              valueText:
+                                  '${eventModel.eventType[0].toUpperCase()}${eventModel.eventType.substring(1)}'),
                           const SizedBox(
                             height: 20.0,
                           ),

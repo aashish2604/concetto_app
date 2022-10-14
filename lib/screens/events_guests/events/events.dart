@@ -21,7 +21,7 @@ class Events extends StatefulWidget {
 
 class _EventsState extends State<Events> {
   String? selectedType;
-  List<String> filterTypes = ['club', 'departmental', 'informal', 'no filter'];
+  List<String> filterTypes = ['club', 'departmental', 'informal', 'No filter'];
   List<EventModel> eventData = [];
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,9 @@ class _EventsState extends State<Events> {
           items: filterTypes
               .map((type) => DropdownMenuItem(
                     value: type,
-                    child: type != 'no filter'
+                    child: type != 'No filter'
                         ? Text(
-                            type,
+                            '${type[0].toUpperCase()}${type.substring(1)}',
                             style: const TextStyle(color: Colors.white),
                           )
                         : Text(
@@ -54,7 +54,7 @@ class _EventsState extends State<Events> {
               .toList(),
           onChanged: (type) {
             for (var model in data) {
-              if (type == 'no filter') {
+              if (type == 'No filter') {
                 eventData = [];
               } else if (model.eventType == type) {
                 tempEventData.add(model);
@@ -91,7 +91,7 @@ class _EventsState extends State<Events> {
                       if (snapshot.data!.isNotEmpty) {
                         if ((eventData.isEmpty && selectedType == null) ||
                             (eventData.isEmpty &&
-                                selectedType == 'no filter')) {
+                                selectedType == 'No filter')) {
                           eventData = snapshot.data!;
                         } else if (eventData.isEmpty && selectedType != null) {
                           return Padding(
