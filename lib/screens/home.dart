@@ -12,10 +12,8 @@ import 'package:concetto_app/widgets/navigation_drawer.dart';
 import 'package:concetto_app/widgets/rive_animation.dart';
 import 'package:concetto_app/widgets/slashbox.dart';
 import 'package:concetto_app/widgets/sponsors_list.dart';
-import 'package:concetto_app/widgets/video_player_container.dart';
 import 'package:concetto_app/widgets/youtube_player.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 

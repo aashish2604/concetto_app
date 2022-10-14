@@ -24,7 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
         const Duration(seconds: 4),
-            () => Navigator.of(context).push(_createRoute()));
+        () => {
+              Navigator.pushAndRemoveUntil<dynamic>(
+                  context, _createRoute(), (route) => false)
+            });
   }
 
   @override
@@ -80,11 +83,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-
 Route _createRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
-
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
