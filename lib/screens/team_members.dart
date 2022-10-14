@@ -6,6 +6,7 @@ import 'package:concetto_app/services/configs/size_config.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/glassmorphic_container.dart';
 import 'package:concetto_app/widgets/loading.dart';
+import 'package:concetto_app/widgets/slashbox.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -104,6 +105,52 @@ class TeamMembers extends StatelessWidget {
                     }),
                 const SizedBox(
                   height: 40.0,
+                ),
+                Text(
+                  'App is made with ❤ by',
+                  style: headingStyle.copyWith(fontSize: 26.0),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                AppMakersCard(
+                    fontSize: 22.0,
+                    height: 330,
+                    width: SizeConfig.instance.screenWidth * 0.7,
+                    imageSize: 230,
+                    name: 'Aashish Ranjan Singh',
+                    fb: 'https://www.facebook.com/aashishranjan.singh.14',
+                    insta: 'https://www.instagram.com/aashishsingh.26',
+                    linkedin:
+                        'https://www.linkedin.com/in/aashish-ranjan-singh-9848091b9',
+                    iconSize: 30.0,
+                    imageUrl: 'assets/images/aashish_dp.jpeg'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AppMakersCard(
+                        fontSize: 16.0,
+                        iconSize: 24.0,
+                        height: 250,
+                        width: SizeConfig.instance.screenWidth * 0.45,
+                        name: 'Tarun Shrivastava',
+                        insta: 'http://www.instagram.com/taruns_0108',
+                        fb: 'https://www.facebook.com/tarun.shrivastava.501598',
+                        linkedin:
+                            'https://www.linkedin.com/in/tarun-shrivastava-661b69201',
+                        imageUrl: 'assets/images/tarun_dp.jpg'),
+                    AppMakersCard(
+                        fontSize: 16.0,
+                        iconSize: 24.0,
+                        height: 250,
+                        width: SizeConfig.instance.screenWidth * 0.45,
+                        name: 'Ansh Tandon',
+                        insta: 'https://www.instagram.com/ansh.tandon.98',
+                        fb: 'https://www.facebook.com/ansh.tandon.98',
+                        linkedin:
+                            'https://www.linkedin.com/in/ansh-tandon-68871b178',
+                        imageUrl: 'assets/images/ansh_dp.jpeg')
+                  ],
                 )
               ],
             ),
@@ -297,6 +344,104 @@ class CoreTeamMemberCard2 extends StatelessWidget {
                     return const CachedNetworkImageError();
                   }
                 },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AppMakersCard extends StatelessWidget {
+  final double height;
+  final double? width;
+  final String name;
+  final String imageUrl, insta, fb, linkedin;
+  final double fontSize;
+  final double iconSize;
+  final double? imageSize;
+  const AppMakersCard(
+      {required this.height,
+      this.imageSize,
+      this.width,
+      required this.iconSize,
+      required this.name,
+      required this.fontSize,
+      required this.insta,
+      required this.fb,
+      required this.linkedin,
+      required this.imageUrl,
+      super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextStyle titleTextStyle = GoogleFonts.quantico(
+        color: kBrightCyan, fontSize: fontSize, fontWeight: FontWeight.w600);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: BorderedSlashBox(
+        height: height,
+        padding: EdgeInsets.zero,
+        width: width ?? height,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: imageSize ?? height * 0.6,
+              child: Image(
+                image: AssetImage(imageUrl),
+                fit: BoxFit.fill,
+              ),
+            ),
+            Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: titleTextStyle,
+                      ),
+                    ])),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Uri uri = Uri.parse(fb);
+                        launchUrl(uri);
+                      },
+                      icon: FaIcon(
+                        size: iconSize,
+                        FontAwesomeIcons.facebook,
+                        color: Colors.blue,
+                      )),
+                  IconButton(
+                      onPressed: () {
+                        Uri uri = Uri.parse(insta);
+                        launchUrl(uri);
+                      },
+                      icon: FaIcon(
+                        size: iconSize,
+                        FontAwesomeIcons.instagram,
+                        color: Colors.purple,
+                      )),
+                  IconButton(
+                      onPressed: () {
+                        Uri uri = Uri.parse(linkedin);
+                        launchUrl(uri);
+                      },
+                      icon: FaIcon(
+                        size: iconSize,
+                        FontAwesomeIcons.linkedin,
+                        color: Colors.blue,
+                      )),
+                ],
               ),
             ),
           ],

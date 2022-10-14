@@ -1,4 +1,5 @@
 import 'package:concetto_app/screens/team_members.dart';
+import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:concetto_app/widgets/sponsors_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -82,6 +83,24 @@ class AboutUs extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(
+                  //       horizontal: 8.0, vertical: 4.0),
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.black,
+                  //     borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  //     border: Border.all(
+                  //       width: 1.5,
+                  //       color: kBrightCyan,
+                  //     ),
+                  //   ),
+                  //   width: double.infinity,
+                  //   child: Text(
+                  //     'App is maintained by Aashish Ranjan Singh, Tarun Shrivastav and Ansh Tandon',
+                  //     style: GoogleFonts.oswald(
+                  //         color: Colors.white, fontSize: 18.0),
+                  //   ),
+                  // )
                 ],
               ),
             ),
