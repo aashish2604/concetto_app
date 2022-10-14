@@ -116,7 +116,7 @@ class TeamMembers extends StatelessWidget {
                 AppMakersCard(
                     fontSize: 22.0,
                     height: 330,
-                    width: SizeConfig.instance.screenWidth * 0.7,
+                    width: SizeConfig.instance.screenWidth * 0.72,
                     imageSize: 230,
                     name: 'Aashish Ranjan Singh',
                     fb: 'https://www.facebook.com/aashishranjan.singh.14',
