@@ -131,7 +131,7 @@ class TeamMembers extends StatelessWidget {
                     AppMakersCard(
                         fontSize: 16.0,
                         iconSize: 24.0,
-                        height: 250,
+                        height: 300,
                         width: SizeConfig.instance.screenWidth * 0.45,
                         name: 'Tarun Shrivastava',
                         insta: 'http://www.instagram.com/taruns_0108',
@@ -142,7 +142,7 @@ class TeamMembers extends StatelessWidget {
                     AppMakersCard(
                         fontSize: 16.0,
                         iconSize: 24.0,
-                        height: 250,
+                        height: 300,
                         width: SizeConfig.instance.screenWidth * 0.45,
                         name: 'Ansh Tandon',
                         insta: 'https://www.instagram.com/ansh.tandon.98',
