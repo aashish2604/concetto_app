@@ -1,4 +1,8 @@
+import 'package:concetto_app/repository/merchendise_repository.dart';
+import 'package:concetto_app/repository/winners_repository.dart';
+import 'package:concetto_app/screens/drawer/merchandise/merchandise_list.dart';
 import 'package:concetto_app/screens/drawer/notifications.dart';
+import 'package:concetto_app/screens/drawer/winner.dart';
 import 'package:concetto_app/services/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -58,7 +62,8 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   onTap: () {
                     Uri uri = Uri.parse("https://concetto.in/");
-                    launchUrl(uri);
+                    launchUrl(uri, mode: LaunchMode.externalApplication);
+                    ;
                   },
                 ),
               ),
@@ -80,6 +85,33 @@ class NavigationDrawer extends StatelessWidget {
                   leading: Icon(Icons.notifications, color: Colors.white70),
                 ),
               ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const MerchandiseList()));
+                },
+                child: const ListTile(
+                  title: Text(
+                    'Merchandises',
+                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                  ),
+                  leading: Icon(Icons.shopping_cart, color: Colors.white70),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  WinnersRepository().getWinners();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const WinnerList()));
+                },
+                child: const ListTile(
+                  title: Text(
+                    'Winners',
+                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                  ),
+                  leading: Icon(Icons.leaderboard, color: Colors.white70),
+                ),
+              ),
               const Expanded(child: SizedBox()),
               followUsLabel,
               Row(
@@ -89,7 +121,8 @@ class NavigationDrawer extends StatelessWidget {
                       onPressed: () {
                         Uri uri = Uri.parse(
                             "https://www.facebook.com/Concettoiitdhanbad/");
-                        launchUrl(uri);
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                        ;
                       },
                       icon: const FaIcon(
                         size: 30,
@@ -100,7 +133,8 @@ class NavigationDrawer extends StatelessWidget {
                       onPressed: () {
                         Uri uri = Uri.parse(
                             "https://www.instagram.com/concetto.iitism/?hl=en");
-                        launchUrl(uri);
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                        ;
                       },
                       icon: const FaIcon(
                         size: 30,
@@ -111,7 +145,8 @@ class NavigationDrawer extends StatelessWidget {
                       onPressed: () {
                         Uri uri = Uri.parse(
                             "https://www.linkedin.com/company/concetto-iitism-dhanbad/");
-                        launchUrl(uri);
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                        ;
                       },
                       icon: const FaIcon(
                         size: 30,
@@ -121,7 +156,7 @@ class NavigationDrawer extends StatelessWidget {
                   // IconButton(
                   //     onPressed: () {
                   //       Uri uri = Uri.parse("https://concetto.in/");
-                  //       launchUrl(uri);
+                  //       launchUrl(uri,mode: LaunchMode.externalApplication);;
                   //     },
                   //     icon: const FaIcon(
                   //       size: 40,
