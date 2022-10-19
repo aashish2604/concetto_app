@@ -60,7 +60,7 @@ class TeamMembers extends StatelessWidget {
                                   crossAxisCount: 1,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,
-                                  mainAxisExtent: 190.0,
+                                  mainAxisExtent: 200.0,
                                 ),
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
@@ -172,7 +172,7 @@ class CoreTeamMemberCard1 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
-      height: 190,
+      height: 200,
       width: double.infinity,
       child: Center(
         child: Row(
@@ -268,7 +268,7 @@ class CoreTeamMemberCard2 extends StatelessWidget {
     final TextStyle subtitleTextStyle = GoogleFonts.manrope(
         color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400);
     return GlassMorphicListTile(
-      height: 190,
+      height: 200,
       width: double.infinity,
       child: Center(
         child: Row(

@@ -35,7 +35,7 @@ class SponsorList extends StatelessWidget {
                       crossAxisCount: 2,
                       crossAxisSpacing: 12,
                       mainAxisSpacing: 12,
-                      mainAxisExtent: 190.0,
+                      mainAxisExtent: 210.0,
                     ),
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
@@ -89,7 +89,7 @@ class SponsorsGridTile extends StatelessWidget {
         ;
       },
       child: GlassMorphicListTile(
-        height: 190,
+        height: 210,
         width: double.infinity,
         borderColor: Colors.grey,
         child: Column(
@@ -116,6 +116,15 @@ class SponsorsGridTile extends StatelessWidget {
                 data.name,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.oswald(color: Colors.white, fontSize: 16.0),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                data.category,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    GoogleFonts.oswald(color: Colors.white70, fontSize: 16.0),
               ),
             )
           ],

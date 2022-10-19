@@ -225,23 +225,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 60,
-                  ),
+                  // const SizedBox(
+                  //   height: 60,
+                  // ),
 
-                  const Text(
-                    'Major Sponsors',
-                    style: TextStyle(
-                        fontFamily: "orbitron",
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  const SponsorList(
-                    isMajorRequired: true,
-                  ),
+                  // const Text(
+                  //   'Major Sponsors',
+                  //   style: TextStyle(
+                  //       fontFamily: "orbitron",
+                  //       fontSize: 30,
+                  //       color: Colors.white),
+                  // ),
+                  // const SizedBox(
+                  //   height: 20.0,
+                  // ),
+                  // const SponsorList(
+                  //   isMajorRequired: true,
+                  // ),
                   const SizedBox(
                     height: 40.0,
                   ),
@@ -255,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: const Text('About us')),
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                 ],
               ),
