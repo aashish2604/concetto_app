@@ -14,6 +14,7 @@ class MerchendiseModel {
   String image;
   double price;
   String description;
+  String? url;
 
   MerchendiseModel({
     required this.id,
@@ -21,14 +22,17 @@ class MerchendiseModel {
     required this.image,
     required this.price,
     required this.description,
+    this.url,
   });
 
   factory MerchendiseModel.fromJson(Map<String, dynamic> json) {
     return MerchendiseModel(
-        id: json['id'],
-        name: json['name'],
-        image: json['image'],
-        price: json['price'],
-        description: json['description']);
+      id: json['id'],
+      name: json['name'],
+      image: json['image'],
+      price: json['price'],
+      description: json['description'],
+      url: json['url'],
+    );
   }
 }
