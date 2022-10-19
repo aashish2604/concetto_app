@@ -154,6 +154,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 40,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: TextButton(
+                        onPressed: () {
+                          Uri uri = Uri.parse(
+                              'https://docs.google.com/forms/d/e/1FAIpQLScodg_UYACMBMLkUaN-FwXrmQDDGuq9K0-KPRl3AKRS7FoPoQ/viewform');
+                          launchUrl(uri, mode: LaunchMode.externalApplication);
+                        },
+                        child: const Text('Register Here')),
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
+
                   // const Center(
                   //   child: Text(
                   //     'Coming Soon...',
