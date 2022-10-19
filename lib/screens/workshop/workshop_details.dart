@@ -145,12 +145,8 @@ class WorkshopDetails extends StatelessWidget {
                                 onPressed: () async {
                                   Uri uri =
                                       Uri.parse(workshopModel.registerLink);
-                                  if (await canLaunchUrl(uri)) {
-                                    launchUrl(uri);
-                                  } else {
-                                    launchUrl(uri,
-                                        mode: LaunchMode.externalApplication);
-                                  }
+                                  launchUrl(uri,
+                                      mode: LaunchMode.externalApplication);
                                 },
                                 child: const Text('Register')),
                           ),

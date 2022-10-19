@@ -102,7 +102,14 @@ class EventDetails extends StatelessWidget {
                             style: const TextStyle(color: kBrightCyan),
                           ),
                           const SizedBox(
-                            height: 20.0,
+                            height: 10,
+                          ),
+                          const Divider(
+                            color: Colors.white60,
+                            thickness: 2,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
                           Text(
                             eventModel.summary,
@@ -139,16 +146,21 @@ class EventDetails extends StatelessWidget {
                           const SizedBox(
                             height: 20.0,
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: TextButton(
-                                onPressed: () {
-                                  Uri uri = Uri.parse(eventModel.registerLink);
-                                  launchUrl(uri);
-                                },
-                                child: const Text('Register')),
-                          ),
+                          eventModel.eventComplete == false
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: TextButton(
+                                      onPressed: () {
+                                        Uri uri =
+                                            Uri.parse(eventModel.registerLink);
+                                        launchUrl(uri,
+                                            mode:
+                                                LaunchMode.externalApplication);
+                                      },
+                                      child: const Text('Register')),
+                                )
+                              : const SizedBox.shrink(),
                           const SizedBox(
                             height: 40.0,
                           )
@@ -168,7 +180,7 @@ class EventDetails extends StatelessWidget {
                       const Icon(Icons.assignment_outlined, color: kBrightCyan),
                   onPressed: () {
                     Uri uri = Uri.parse(eventModel.brochureLink);
-                    launchUrl(uri);
+                    launchUrl(uri, mode: LaunchMode.externalApplication);
                   },
                 ),
               ),

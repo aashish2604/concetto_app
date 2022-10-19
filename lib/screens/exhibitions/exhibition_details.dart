@@ -149,7 +149,7 @@ class ExhibitionDetails extends StatelessWidget {
               //     const Icon(Icons.assignment_outlined, color: kBrightCyan),
               //     onPressed: () {
               //       Uri uri = Uri.parse(guestTalksModel.);
-              //       launchUrl(uri);
+              //       launchUrl(uri,mode: LaunchMode.externalApplication);;
               //     },
               //   ),
               // ),

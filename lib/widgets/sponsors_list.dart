@@ -85,7 +85,8 @@ class SponsorsGridTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Uri uri = Uri.parse(data.url);
-        launchUrl(uri);
+        launchUrl(uri, mode: LaunchMode.externalApplication);
+        ;
       },
       child: GlassMorphicListTile(
         height: 190,

@@ -235,7 +235,9 @@ class CoreTeamMemberCard1 extends StatelessWidget {
                         IconButton(
                             onPressed: () {
                               Uri uri = Uri.parse(teamMembersModel.linkedIn);
-                              launchUrl(uri);
+                              launchUrl(uri,
+                                  mode: LaunchMode.externalApplication);
+                              ;
                             },
                             icon: const FaIcon(
                               size: 40,
@@ -313,7 +315,9 @@ class CoreTeamMemberCard2 extends StatelessWidget {
                         IconButton(
                             onPressed: () {
                               Uri uri = Uri.parse(teamMembersModel.linkedIn);
-                              launchUrl(uri);
+                              launchUrl(uri,
+                                  mode: LaunchMode.externalApplication);
+                              ;
                             },
                             icon: const FaIcon(
                               size: 40,
@@ -414,7 +418,8 @@ class AppMakersCard extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         Uri uri = Uri.parse(fb);
-                        launchUrl(uri);
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                        ;
                       },
                       icon: FaIcon(
                         size: iconSize,
@@ -424,7 +429,8 @@ class AppMakersCard extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         Uri uri = Uri.parse(insta);
-                        launchUrl(uri);
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                        ;
                       },
                       icon: FaIcon(
                         size: iconSize,
@@ -434,7 +440,8 @@ class AppMakersCard extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         Uri uri = Uri.parse(linkedin);
-                        launchUrl(uri);
+                        launchUrl(uri, mode: LaunchMode.externalApplication);
+                        ;
                       },
                       icon: FaIcon(
                         size: iconSize,

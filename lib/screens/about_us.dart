@@ -46,7 +46,7 @@ class AboutUs extends StatelessWidget {
                     height: 20.0,
                   ),
                   Text(
-                    'Sponsers',
+                    'Sponsors',
                     style: headingStyle,
                   ),
                   const SizedBox(height: 20.0),

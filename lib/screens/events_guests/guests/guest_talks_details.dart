@@ -99,7 +99,14 @@ class GuestTalksDetails extends StatelessWidget {
                             style: const TextStyle(color: kBrightCyan),
                           ),
                           const SizedBox(
-                            height: 20.0,
+                            height: 10,
+                          ),
+                          const Divider(
+                            color: Colors.white60,
+                            thickness: 2,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
                           ),
                           Text(
                             guestTalksModel.summary,
@@ -140,7 +147,8 @@ class GuestTalksDetails extends StatelessWidget {
                                 onPressed: () {
                                   Uri uri =
                                       Uri.parse(guestTalksModel.registerLink);
-                                  launchUrl(uri);
+                                  launchUrl(uri,
+                                      mode: LaunchMode.externalApplication);
                                 },
                                 child: const Text('Register')),
                           ),
@@ -163,7 +171,7 @@ class GuestTalksDetails extends StatelessWidget {
               //     const Icon(Icons.assignment_outlined, color: kBrightCyan),
               //     onPressed: () {
               //       Uri uri = Uri.parse(guestTalksModel.);
-              //       launchUrl(uri);
+              //       launchUrl(uri,mode: LaunchMode.externalApplication);;
               //     },
               //   ),
               // ),
